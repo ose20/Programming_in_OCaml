@@ -26,7 +26,3 @@ let z =
   and y = 3.1 in
   f (string_of_float y)
 
-
-let yen_of_dollar dollar =
-  let rate = 114.32 in
-  floor (rate *. dollar)
