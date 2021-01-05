@@ -57,7 +57,16 @@ let overlap_circle_rectangle f1 f2 =
             then left2 -. x1 <= float_of_int r1
             else if x1 <= left2 && y1 <= bottom2
             then sq_dist (left2, bottom2) (x1, y1) <= float_of_int @@ r1 * r1
-            else if 
+            else if left2 <= x1 && x1 <= right2 && y1 <= bottom2
+            then bottom2 -. y1 <= float_of_int r1
+            else if right2 <= x1 && y1 <= bottom2
+            then sq_dist (x1, y1) (right2, bottom2) <= float_of_int @@ r1 * r1
+            else if right2 <= x1 && bottom2 <= y1 && y1 <= upper2
+            then x2 -. right2 <= float_of_int r1
+            else if right2 <= x1 && upper2 <= y1
+            then sq_dist (x1, y1) (right2, upper2) <= float_of_int @@ r1 * r1
+            else if left2 <= x1 && x1 <= right2 && upper2 <= y1
+            then y1 -. upper2 <= float_of_int r1
             else true
     | _ -> raise Invalid_variant
 
