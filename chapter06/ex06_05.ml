@@ -1,3 +1,4 @@
+(* 練習問題6.5 *)
 type 'a tree = Lf | Br of 'a * 'a tree * 'a tree
 
 let rec comptree x n =
