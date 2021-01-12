@@ -17,3 +17,17 @@ let fib = Cons(1, next 0)
 let rec nthseq n (Cons(x, f)) =
   if n = 1 then x
   else nthseq (n - 1) (f x)
+
+
+(* 別の方法 *)
+type pairseq = PCons of int * int * (int -> int -> pairseq)
+
+let rec nxt a b = PCons(b, a + b, nxt)
+let PCons (y0, y1, g1) = PCons (0, 1, nxt)
+let PCons (y1, y2, g2) = g1 y0 y1
+let PCons (y2, y3, g3) = g2 y1 y2
+let PCons (y3, y4, g4) = g3 y2 y3
+
+let rec nthpairseq n (PCons(a, b, f)) =
+  if n = 1 then b
+  else nthpairseq (n - 1) (f a b)
